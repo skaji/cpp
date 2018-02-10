@@ -6,9 +6,8 @@
 
 class File {
  public:
-  File();
+  File(const std::string& path);
   ~File();
-  void init(const std::string& path);
   bool read(std::string& out);
   bool isReplaced() const;
  private:

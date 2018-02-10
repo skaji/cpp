@@ -16,13 +16,9 @@ ino_t getInode(const string& path) {
 }
 };
 
-File::File() : path_(), inode_(0) {}
+File::File(const string& path) : path_(path), inode_(0) {}
 
 File::~File() {}
-
-void File::init(const string& path) {
-  path_ = path;
-}
 
 bool File::read(string& out) {
   ifstream in(path_);
