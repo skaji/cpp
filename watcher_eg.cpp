@@ -7,6 +7,10 @@ using namespace std;
 
 static void load(const string& path, void* content) {
   ifstream ifs(path);
+  if (!ifs) {
+    cout << "err!\n";
+    return;
+  }
   ostringstream ss;
   ss << ifs.rdbuf();
   static_cast<string*>(content)->assign(ss.str());
@@ -17,9 +21,7 @@ class File {
   File(const string& path) : watcher_(path), content_() {}
   ~File() {}
   bool reload_if_renamed() {
-    bool ok = watcher_.if_renamed(load, &content_);
-    cout << "[" << content_ << "]\n";
-    return ok;
+    return watcher_.if_renamed(load, &content_);
   }
  private:
   Watcher watcher_;
