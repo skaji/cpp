@@ -6,10 +6,10 @@
 
 class Watcher {
  public:
-  typedef void (*Func)(const std::string& path);
+  typedef void (*Func)(const std::string& path, void* ptr);
   explicit Watcher(const std::string& path);
   ~Watcher();
-  bool if_renamed(Func func);
+  bool if_renamed(Func func, void* ptr = NULL);
  private:
   std::string path_;
   ino_t inode_;
