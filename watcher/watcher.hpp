@@ -7,7 +7,7 @@
 class Watcher {
  public:
   typedef void (*Func)(const std::string& path);
-  Watcher(const std::string& path);
+  explicit Watcher(const std::string& path);
   ~Watcher();
   bool if_renamed(Func func);
  private:
