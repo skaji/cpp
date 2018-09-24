@@ -8,6 +8,7 @@ class Watcher {
  public:
   struct Result {
     bool renamed;
+    int errno;
     std::string error;
   };
 

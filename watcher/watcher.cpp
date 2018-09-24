@@ -12,7 +12,7 @@ Watcher::Result Watcher::watch() {
   struct stat st;
   int ret = stat(path_.c_str(), &st);
   if (ret == -1) {
-    return Result{false, strerror(errno)};
+    return Result{false, errno, strerror(errno)};
   }
   if (inode_ == st.st_ino) {
     return Result{false};
