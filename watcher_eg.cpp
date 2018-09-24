@@ -40,7 +40,14 @@ class File {
   File(const string& path) : watcher_(path), content_() {}
   ~File() {}
   bool reload_if_renamed() {
-    return watcher_.if_renamed(load, &content_);
+    Watcher::Result res = watcher_.watch();
+    if (!res.error.empty()) {
+      cerr << "oops";
+      return false;
+    }
+    if (res.renamed) {
+    }
+    return true;
   }
   void dump() {
     cout << "------- dump\n";
